@@ -3,12 +3,11 @@
 // Description:
 package de.surfice.sbtnpm.webpack
 
-import de.surfice.sbtnpm.{NpmPlugin, Versions, utils}
+import de.surfice.sbtnpm.{NpmPlugin, utils}
 import sbt._
 import Keys._
-import de.surfice.sbtnpm.NpmPlugin.NpmDependency
-import de.surfice.sbtnpm.utils.{ExternalCommand, FileWithLastrun, JsonNode, NodeCommand}
-import org.scalajs.sbtplugin.{ScalaJSPlugin, ScalaJSPluginInternal, Stage}
+import de.surfice.sbtnpm.utils.{FileWithLastrun, JsonNode, NodeCommand}
+import org.scalajs.sbtplugin.{ScalaJSPluginInternal, Stage}
 import sjsonnew.BasicJsonProtocol._
 
 object WebpackPlugin extends AutoPlugin {

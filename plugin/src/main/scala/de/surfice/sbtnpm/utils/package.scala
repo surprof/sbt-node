@@ -4,9 +4,7 @@
 package de.surfice.sbtnpm
 
 import sbt._
-import Keys._
-import Cache._
-import com.typesafe.config.{Config, ConfigFactory, ConfigObject}
+import com.typesafe.config.{Config, ConfigObject}
 
 package object utils {
   def fileWithScalaJSStageSuffix(dir: File, filePrefix: String, stage: Scoped, fileSuffix: String): File =

@@ -5,7 +5,6 @@ package de.surfice.sbtnpm.utils
 
 import sbt.Logger
 
-import scala.annotation.tailrec
 import scala.language.implicitConversions
 
 sealed trait JsonNode

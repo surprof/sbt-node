@@ -7,7 +7,6 @@ import java.io.{File => _}
 
 import com.typesafe.config.Config
 import de.surfice.sbtnpm.utils.{ExternalCommand, FileWithLastrun}
-import sbt.Cache._
 import sbt.Keys._
 import sbt._
 import utils._

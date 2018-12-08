@@ -4,6 +4,7 @@
 package de.surfice.sbtnpm.utils
 
 import java.nio.file.Files
+import scala.io.StdIn.readLine
 import scala.sys.process.Process
 
 import sbt.{Level, _}

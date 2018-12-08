@@ -2,7 +2,6 @@
 //      Module:
 // Description:
 package de.surfice.sbtnpm.utils
-import sbinary.{Input, Output}
 import sbt._
 
 import scala.annotation.tailrec

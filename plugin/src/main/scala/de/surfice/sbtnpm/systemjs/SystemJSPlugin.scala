@@ -8,7 +8,7 @@ import Keys._
 import com.typesafe.config.Config
 import de.surfice.sbtnpm.assets.AssetsPlugin
 import de.surfice.sbtnpm.liteserver.LiteServerPlugin
-import de.surfice.sbtnpm.{NpmPlugin, Versions, utils}
+import de.surfice.sbtnpm.{NpmPlugin, utils}
 import de.surfice.sbtnpm.utils.{FileWithLastrun, JsonNode, JsonNodeGenerator}
 import org.scalajs.sbtplugin.{ScalaJSPluginInternal, Stage}
 import utils._

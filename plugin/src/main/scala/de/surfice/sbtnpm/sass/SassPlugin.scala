@@ -5,11 +5,10 @@ package de.surfice.sbtnpm.sass
 
 import de.surfice.sbtnpm.NpmPlugin
 import de.surfice.sbtnpm.NpmPlugin.autoImport._
-import de.surfice.sbtnpm.utils.{ExternalCommand, NodeCommand}
+import de.surfice.sbtnpm.utils.NodeCommand
 import org.scalajs.sbtplugin.{ScalaJSPluginInternal, Stage}
 import sbt._
 import Keys._
-import Cache._
 import de.surfice.sbtnpm.assets.AssetsPlugin
 import sjsonnew.BasicJsonProtocol._
 

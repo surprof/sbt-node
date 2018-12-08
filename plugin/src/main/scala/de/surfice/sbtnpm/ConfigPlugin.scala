@@ -10,7 +10,6 @@ import sbt.{Def, _}
 import Keys._
 import com.typesafe.config.{Config, ConfigFactory}
 import org.scalajs.sbtplugin.ScalaJSPlugin
-import sbt.librarymanagement.DependencyBuilders
 
 object ConfigPlugin extends AutoPlugin {
 
@@ -80,6 +79,4 @@ object ConfigPlugin extends AutoPlugin {
 
 
   private def fin(file: File): BufferedInputStream = new BufferedInputStream(new FileInputStream(file))
-
-  private object DepBuilder extends DependencyBuilders
 }
