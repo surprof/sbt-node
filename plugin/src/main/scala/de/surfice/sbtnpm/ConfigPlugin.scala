@@ -10,7 +10,7 @@ import sbt.{Def, _}
 import Keys._
 import com.typesafe.config.{Config, ConfigFactory}
 import org.scalajs.sbtplugin.ScalaJSPlugin
-import sbt.impl.DependencyBuilders
+import sbt.librarymanagement.DependencyBuilders
 
 object ConfigPlugin extends AutoPlugin {
 
@@ -32,7 +32,7 @@ object ConfigPlugin extends AutoPlugin {
 
 
   override def projectSettings: Seq[Def.Setting[_]] = Seq(
-    libraryDependencies += DepBuilder.toGroupID("de.surfice") %% "sbt-node-config" % Versions.sbtNode,
+    libraryDependencies += "de.surfice" %% "sbt-node-config" % Versions.sbtNode,
 
     npmProjectConfigFile := baseDirectory.value / "project.conf",
 

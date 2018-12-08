@@ -11,6 +11,7 @@ import sbt._
 import Keys._
 import Cache._
 import de.surfice.sbtnpm.assets.AssetsPlugin
+import sjsonnew.BasicJsonProtocol._
 
 object SassPlugin extends AutoPlugin {
 

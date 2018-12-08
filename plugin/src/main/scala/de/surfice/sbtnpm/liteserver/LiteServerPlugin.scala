@@ -9,6 +9,7 @@ import de.surfice.sbtnpm.assets.AssetsPlugin
 import de.surfice.sbtnpm.{NpmPlugin, utils}
 import de.surfice.sbtnpm.utils.{FileWithLastrun, JsonNode, NodeCommand}
 import org.scalajs.sbtplugin.{ScalaJSPluginInternal, Stage}
+import sjsonnew.BasicJsonProtocol._
 
 object LiteServerPlugin extends AutoPlugin {
 

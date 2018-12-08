@@ -12,6 +12,7 @@ import de.surfice.sbtnpm.{NpmPlugin, Versions, utils}
 import de.surfice.sbtnpm.utils.{FileWithLastrun, JsonNode, JsonNodeGenerator}
 import org.scalajs.sbtplugin.{ScalaJSPluginInternal, Stage}
 import utils._
+import sjsonnew.BasicJsonProtocol._
 
 object SystemJSPlugin extends AutoPlugin {
 
@@ -83,7 +84,7 @@ object SystemJSPlugin extends AutoPlugin {
     }
 
   private def defineSystemJSTask(scoped: Scoped) =
-    systemJS in scoped := {
+    systemJS in scoped := Def.taskDyn {
       val lastrun = (systemJS in scoped).previous
       val file = (systemJSFile in scoped).value
 
@@ -92,11 +93,11 @@ object SystemJSPlugin extends AutoPlugin {
         writeSystemJSFile(
           file = file,
           config = (systemJSConfig in scoped).value)
-        FileWithLastrun(file)
+        Def.task { FileWithLastrun(file) }
       }
       else
-        lastrun.get
-    }
+        Def.task { lastrun.get }
+    }.value
 
   private def writeSystemJSFile(file: File,
                                 config: SystemJSConfig): Unit = {

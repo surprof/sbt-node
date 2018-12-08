@@ -12,6 +12,7 @@ import sbt.Keys._
 import sbt._
 import utils._
 import collection.JavaConverters._
+import sjsonnew.BasicJsonProtocol._
 
 object NpmPlugin extends AutoPlugin {
   type NpmDependency = (String,String)
@@ -132,7 +133,7 @@ object NpmPlugin extends AutoPlugin {
       scripts = npmScripts.value
     ),
 
-    npmWritePackageJson := {
+    npmWritePackageJson := Def.taskDyn {
       val file = npmPackageJsonFile.value
       val lastrun = npmWritePackageJson.previous
       val projectConfigFile = npmProjectConfigFile.value
@@ -140,23 +141,23 @@ object NpmPlugin extends AutoPlugin {
 
       if(lastrun.isEmpty || lastrun.get.needsUpdateComparedToConfig(baseDirectory.value) || projectConfigIsNewer) {
         npmPackageJson.value.writeFile()(streams.value.log)
-        FileWithLastrun(file)
+        Def.task { FileWithLastrun(file) }
       }
       else
-        lastrun.get
-    },
+        Def.task { lastrun.get }
+    }.value,
 
-    npmInstall := {
+    npmInstall := Def.taskDyn {
       val file = npmWritePackageJson.value
       val lastrun = npmInstall.previous
       val dir = npmNodeModulesDir.value
       if(lastrun.isEmpty || file.lastrun>lastrun.get || !dir.exists()) {
         ExternalCommand.npm.install(npmTargetDir.value.getCanonicalFile,npmNodeModulesDir.value.getCanonicalFile,streams.value.log)
-        new java.util.Date().getTime
+        Def.task { new java.util.Date().getTime }
       }
       else
-        lastrun.get
-    },
+        Def.task { lastrun.get }
+    }.value,
 
     npmRunScript := {
       import complete.DefaultParsers._
@@ -178,4 +179,3 @@ object NpmPlugin extends AutoPlugin {
       .toSeq
 
 }
-

@@ -9,6 +9,7 @@ import Keys._
 import de.surfice.sbtnpm.NpmPlugin.NpmDependency
 import de.surfice.sbtnpm.utils.{ExternalCommand, FileWithLastrun, JsonNode, NodeCommand}
 import org.scalajs.sbtplugin.{ScalaJSPlugin, ScalaJSPluginInternal, Stage}
+import sjsonnew.BasicJsonProtocol._
 
 object WebpackPlugin extends AutoPlugin {
   type StageTask = TaskKey[Attributed[File]]

@@ -1,6 +1,6 @@
-version in ThisBuild := "0.0.5-SNAPSHOT"
+version in ThisBuild := "0.1.0-SNAPSHOT"
 
-scalaVersion in ThisBuild := "2.10.6"
+scalaVersion in ThisBuild := "2.12.8"
 
 organization in ThisBuild := "de.surfice"
 
@@ -8,7 +8,7 @@ organization in ThisBuild := "de.surfice"
 lazy val sharedSettings = Seq(
   scalacOptions ++= Seq("-deprecation","-unchecked","-feature","-Xlint"),
   libraryDependencies ++= Seq(
-    "com.lihaoyi" % "utest_2.10" % "0.4.5"
+    "com.lihaoyi" % "utest_2.12" % "0.6.6"
   ),
   testFrameworks += new TestFramework("utest.runner.Framework")
 //  scalacOptions ++= (if (isSnapshot.value) Seq.empty else Seq({
@@ -24,7 +24,7 @@ lazy val plugin = project
     name := "sbt-node",
     sbtPlugin := true,
     libraryDependencies ++= Seq(
-      "com.typesafe" % "config" % "1.3.1"
+      "com.typesafe" % "config" % "1.3.3"
       ),
     addSbtPlugin("org.scala-js" % "sbt-scalajs" % scalaJSVersion),
     sourceGenerators in Compile += Def.task {
@@ -50,8 +50,8 @@ lazy val config = project
   .settings(sharedSettings ++ publishingSettings: _*)
   .settings(
     name := "sbt-node-config",
-    scalaVersion := "2.11.11",
-    crossScalaVersions := Seq("2.11.11","2.12.2")
+    scalaVersion := "2.12.8",
+    crossScalaVersions := Seq("2.12.8")
   )
 
 lazy val publishingSettings = Seq(
@@ -88,13 +88,13 @@ lazy val publishingSettings = Seq(
 lazy val dontPublish = Seq(
     publish := {},
     publishLocal := {},
-    com.typesafe.sbt.pgp.PgpKeys.publishSigned := {},
-    com.typesafe.sbt.pgp.PgpKeys.publishLocalSigned := {},
+//    com.typesafe.sbt.pgp.PgpKeys.publishSigned := {},
+//    com.typesafe.sbt.pgp.PgpKeys.publishLocalSigned := {},
     publishArtifact := false,
     publishTo := Some(Resolver.file("Unused transient repository",file("target/unusedrepo")))
   )
 
-lazy val scriptedSettings = ScriptedPlugin.scriptedSettings ++ Seq(
-  scriptedLaunchOpts += "-Dplugin.version=" + version.value,
+lazy val scriptedSettings = /* ScriptedPlugin.scriptedSettings ++ */ Seq(
+  scriptedLaunchOpts := Seq("-Dplugin.version=" + version.value),
   scriptedBufferLog := false
 )

@@ -39,16 +39,13 @@ object FileWithLastrun {
     else
       findProjectRoot(baseDir.getParentFile)
 
+  import sjsonnew.BasicJsonProtocol._
+  import sjsonnew.{LList, LNil}
+  import sjsonnew.LList.:*:
 
-  implicit object format extends sbinary.Format[FileWithLastrun] {
-    import sbt.Cache._
-    override def reads(in: Input): FileWithLastrun = FileWithLastrun(
-      new sbt.File(StringFormat.reads(in)),
-      LongFormat.reads(in)
-    )
-    override def writes(out: Output, value: FileWithLastrun): Unit = {
-      StringFormat.writes(out,value.file.getCanonicalPath)
-      LongFormat.writes(out,value.lastrun)
-    }
-  }
+  private val unp: PartialFunction[LList, FileWithLastrun] = {case (_, filename: String) :*: (_, lastrun: Long) :*: LNil => FileWithLastrun(new File(filename), lastrun)}
+  implicit val FWLiso = LList.iso(
+    {o: FileWithLastrun => ("file", o.file.toString) :*: ("lastrun", o.lastrun) :*: LNil},
+    unp
+  )
 }
